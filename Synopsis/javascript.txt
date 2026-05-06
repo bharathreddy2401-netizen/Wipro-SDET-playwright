@@ -1,0 +1,225 @@
+Javascript is a lightweight,Interpreted language,high level language that interacts directly with the os.
+It is primarily designed to make webpages interactive
+
+To print anything we use --concole.log()
+strings are alphanumeric which means it can have anything mix of numbers,alphabets and symbols
+
+for better data management we use arrays,list,map,stack,queue
+
+DECLARATION:
+--------------
+we use let,var and const keywords
+CONST: It is a constant value we cannot reassign the value to the same variable
+LET: It is block scoped {}
+VAR: It is function scoped that means does not change the value outside the function if used inside the function.
+
+STRING OPERATIONS:
+------------------
+str.length - to find the length of the strings
+str.toUpperCase() - to convert the string to uppercase 
+str.toLowerCase() - to convert the string to toLowerCase
+str.substring(start index,end index) - to get the substring here start index is inclusive and end index is exclusive
+
+LOGICAL OPERATORS:
+-------------------
+>,<,=,==,===,<=,>=,!=
+
+GIT COMMANDS:
+-----------------
+git config --global user.name " "
+git config --global user.email " "
+
+git remote add origin "Link"
+
+cd .. --this is ued to come out of directory
+git init
+git add .
+git commit -m "message"
+git push origin main
+git push -f origin main - for forced push
+
+Javascript is event driven
+
+DATA TYPES:
+--------------
+String,Number,Boolean,Array,Object
+
+LOOPS:
+-------
+for(let i=0;i<arr.length;i++)
+{
+    console.log("Array at Index",i,:arr[i]);
+}
+
+WHILE LOOP:
+-----------
+let count =atrr.length-1;
+while (count>=0)
+{
+    console.log(arr[i]*2);
+    count--
+}
+
+If we wanted to find the data type we use -- typeof  ex: typeof arr
+
+TEMPLATE LITERALS:
+------------------
+let a=Hello;
+let b=world;
+let c=bye;
+let e = `Hello ${a}, ${b} and ${c}!`
+Instead of concating we use this representation
+
+FUNCTIONS:
+-----------
+
+function table(num) {
+    let result = "";
+    for (let i = 1; i <= 10; i++) {
+        // console.log(num + " x " + i + " = " + (num * i)); // Using string concatenation
+        result += `${num} x ${i} = ${num * i}\n`;
+    }
+    return result;
+}
+
+ARROW FUNCTIONS:
+--------------------
+this representaion is more readable and reduces the size of code
+function sum(a, b) {
+     return a + b;
+ }
+
+let sum1 = sum(5, 10);
+let sum = (x, y) => x + y; // Arrow function for addition
+console.log("Sum of 5 and 10:", sum(5, 10));
+
+
+ARRAYS:
+----------
+let arr = [1, 2, 3, 4, 5, "Bharath"];
+arr.filter(x => typeof x === "number").map(y => y * 2).forEach(abc => console.log("Element after * 2:", abc * 2));
+using arrow functions reduces code size
+here map funvtion is callback function works similar to LOOP
+
+arr.find()--used to find element in the array
+
+FLOOR:
+-------
+console.log(Math.floor(Math.random() * 100) + 1);
+for rounding values to nearest least number is done using floor function
+
+Math.random()--generates random numbers from 0 to 1
+
+arr.indexOf(element);--returns the index o the element if elementnot present return -1
+arr.includes(element);--checks if element is present or not and returns Boolean
+arr.push(element);--pushes the element to the array end
+arr.pop()--removes the last element from the array
+arr.unshift(element)--adds the element to the beginning of the array
+arr.shift()--removes the first element from the array
+arr.splice(start index,number of elements)--removes the elemnts frm the array
+
+TYPE CASTING:
+-------------
+let strnum="5";
+console.log(Number(strnum));--here string is converted to number
+console.log(Integer.parseInt(strnum));//5
+console.log(Integer.parseFloat(strnum));//5.0
+cosole.log(String(5))//"5"--converts to string
+
+
+Promises
+----------
+avaScript Promises are objects representing the eventual completion (or failure) of an asynchronous operation and its resulting value.
+Think of it like ordering food at a restaurant: you get a buzzer (the Promise) that stays quiet while the kitchen works, then eventually notifies you when your meal is ready or if they ran out of ingredients.
+
+Synchronous and asynchronous
+-----------------------------
+In a synchronous model, tasks are performed one at a time. Each operation must finish before the next one begins. If one task takes a long time (like a heavy calculation), the entire program "freezes" and waits.
+
+In an asynchronous model, the program can start a task and move on to the next one without waiting for the first one to finish. When the long-running task finally completes, the program is notified and handles the result.
+
+The Three States of a Promise
+-----------------------------
+A Promise is always in one of these three states:
+
+Pending: Initial state, neither fulfilled nor rejected. The "waiting" period.
+
+Fulfilled (Resolved): The operation completed successfully. You have your data.
+
+Rejected: The operation failed. You have an error message.
+
+we create a Promise using the new Promise constructor, which takes a function (executor) with two arguments: resolve and reject.
+
+const myPromise = new Promise((resolve, reject) => {
+    const success = true;
+
+    if (success) {
+        resolve("Operation successful!");
+    } else {
+        reject("Something went wrong.");
+    }
+});
+
+Once a promise is created, you need to handle the result. There are two primary ways to do this:
+
+A. Using .then() and .catch()
+This is the classic method for handling the asynchronous "pipeline."
+
+.then() runs if the promise is fulfilled.
+
+.catch() runs if the promise is rejected.
+
+.finally() runs regardless of the outcome.
+
+myPromise
+    .then((data) => console.log(data))   // "Operation successful!"
+    .catch((err) => console.error(err))  // "Something went wrong."
+    .finally(() => console.log("Done"));
+
+    Why Use Promises?
+Before Promises, JavaScript relied on callbacks. If you had multiple asynchronous tasks, you ended up with "Callback Hell"—deeply nested code that was nearly impossible to debug.
+
+Feature,                            Callbacks,                                       Promises
+--------------------------------------------------------------------------------------------------------------------------
+Readability,                       |"Poor (Nested ""Pyramid of Doom"")",            |High (Linear Chaining)
+Error Handling,                    |Hard (Must handle in every function),           |Easy (Centralized .catch())
+Control Flow,                      |Difficult to manage,                            |Built-in methods like Promise.all()
+
+fetching APIS:
+--------------
+To fetch an API in JavaScript, you are essentially asking a remote server for data. Because the server might be across the world, this process is asynchronous—your code starts the request and then "waits" for the data to come back without stopping the rest of your program.
+
+example:
+
+fetch("https://fakestoreapi.com/products/1")
+    .then(res => res.json())        // Convert response
+    .then(data => console.log(data)) // Use data
+    .catch(err => console.log(err)); // Handle errors
+
+The Response Object (res):
+----------------------------
+A. The first thing fetch returns is not your data; it's a Response object.
+
+It tells you if the request was successful (res.ok).
+
+It tells you the status code (200 for success, 404 for not found).
+B. JSON Conversion
+Computers send data over the internet as a stream of "chunks." The .json() method is necessary because it tells JavaScript to wait for all the chunks to arrive and then turn them into an object you can actually use.
+C. Error Handling
+Always use .catch() or try/catch. Without it, if the API is down or the user loses Wi-Fi, your entire application might crash.
+
+FREE APIS:
+-----------------
+1. https://jsonplaceholder.typicode.com/todos
+2. https://fakestoreapi.com/products
+3. https://randomuser.me/api/
+4. https://dog.ceo/api/breeds/image/random
+5. https://pokeapi.co/api/v2/pokemon?limit=20
+6. https://openlibrary.org/works/OL45804W.json
+7. https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,population
+8. https://zenquotes.io/api/quotes
+9. http://api.open-notify.org/astros.json
+10. https://official-joke-api.appspot.com/jokes/ten
+
+
+
