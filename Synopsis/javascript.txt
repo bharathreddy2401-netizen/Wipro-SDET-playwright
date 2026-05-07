@@ -270,6 +270,12 @@ Accessors: Using getters and setters to control how data is read or modified.
 Private Fields: Using the # prefix in JS to ensure variables cannot be accessed outside the class scope.
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------
+DAY 6 questions solving
+------------------------
+convert the given array of strings into the objects using for loop.Based on given coditions used functions and conditional statements to evaluate logic
+sorted the data based on given conditions and converted the final result to Json string.used call back functions also where ever necessary.
+
 
 
 
