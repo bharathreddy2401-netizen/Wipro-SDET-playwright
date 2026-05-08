@@ -218,7 +218,7 @@ const employees = [
  { id: 103, name: "Charlie", salary: 5200 }
 ];
 */
-
+/*
 const employees = [
  { id: 101, name: "Alice", salary: 6000 },
  { id: 102, name: "Bob", salary: 3500 },
@@ -258,4 +258,75 @@ function calculatePayroll(employees, taxCallback)
     return employees;
   }, 2000);
 }
-console.log(calculatePayroll(employees,taxLogic));
+console.log(calculatePayroll(employees,taxLogic));*/
+
+
+
+/*Practice 1: The Greenhouse Climate Monitor
+Concept: Handling ranges and multi-step logic.
+
+Problem: You have a list of sensor readings as strings: "SensorID|Temperature|Humidity".
+
+Parse: Convert the strings into objects.
+
+Validate: Temperature and Humidity must be numbers. If they are missing or invalid, default them to 25 (Temp) and 50 (Humidity).
+
+The Goal: Filter for "Critical" readings:
+
+Temperature is above 35°C OR below 10°C.
+
+AND Humidity is above 80%.
+
+Transformation: Add a property alertLevel. If Temp > 40, set it to "High"; otherwise, set it to "Medium".
+
+Output: Return a JSON string of these critical alerts sorted by Temperature (highest first).*/
+
+const readings = [
+  "SNSR01|38|85",
+  "SNSR02|15|40",
+  "SNSR03|invalid|90",
+  "SNSR04|42|82",
+  "SNSR05|8|88"
+];
+
+function temp(readings)
+{
+    let alert="medium"
+    let arr=[];
+    for(let x of readings)
+    {
+        let parts=x.split("|");
+        let sensor=parts[0];
+        let temp=Number(parts[1]);
+        let Humidity=Number(parts[2]);
+        if(isNaN(temp))
+        {
+            temp=25;
+        }
+        if(isNaN(Humidity))
+        {
+            Humidity=50;
+        }
+
+        let obj={
+            sensor:sensor,
+            temp:temp,
+            Humidity:Humidity
+        };
+
+        if((obj.tem>35 || obj.temp<10) && obj.Humidity>80 )
+        {
+            arr.push(obj);
+        }
+        if(temp>40)
+        {
+            alert="High";
+        }
+        console.log(alert);
+        
+
+    }
+    
+    return JSON.stringify(arr);
+}
+console.log(temp(readings));
