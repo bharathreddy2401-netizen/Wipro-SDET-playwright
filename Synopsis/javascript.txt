@@ -275,7 +275,21 @@ DAY 6 questions solving
 ------------------------
 convert the given array of strings into the objects using for loop.Based on given coditions used functions and conditional statements to evaluate logic
 sorted the data based on given conditions and converted the final result to Json string.used call back functions also where ever necessary.
+--------------------------------------------------------------------------------------------------------------------------------------------
 
+Prototype:
+-----------
+Memory Efficiency: Instead of giving every instance of an object its own copy of a method (like .push() for arrays), the method lives on the Array.prototype. Every array you create simply "points" to that one method.
+
+The "Undefined" Error: When you saw Cannot read properties of undefined (reading 'push'), it happened because the variable you were calling .push() on was undefined. Since it was undefined, it had no prototype to look up the .push method from.
+
+Higher-Order Functions (HOFs):
+--------------------------------
+A function is "Higher-Order" if it does at least one of the following:
+
+Takes one or more functions as arguments (callbacks).
+
+Returns a function as its result.
 
 
 
