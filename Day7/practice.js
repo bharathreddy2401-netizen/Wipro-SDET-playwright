@@ -8,7 +8,7 @@ a=a+b;
 b=a-b;
 a=a-b;
 console.log(a,b);
-
+-------------------------------------------------------------------------------------
 //check wheather the number is string ,number boolean,null or undefined
 
 function check(number)
@@ -22,7 +22,7 @@ function check(number)
     }
 }
 console.log(check("12"));
-
+--------------------------------------------------------------------------
 //takes year and calculate date of birth
 
 function ageCheck(year)
@@ -36,7 +36,7 @@ function ageCheck(year)
     }
 }
 console.log(ageCheck(2004));
-
+---------------------------------------------------------------------------------
 //Strings
 //Reverse a string without using built in functions
 
@@ -48,7 +48,7 @@ for(let i=string.length-1;i>=0;i--)
     rev+=string[i];
 }
 console.log(rev);
-
+--------------------------------------------------------------------------------
 //Count the number of vowels in a string.
 
 function countVowels(string)
@@ -67,7 +67,7 @@ function countVowels(string)
 }
 let string1="WElcome to Java Script";
 console.log(`count of vowels in the given string is ${countVowels(string1)}`);
-
+------------------------------------------------------------------------------------------
 //Check whether a string is a palindrome.
 let string3="racecar";
 let rev1="";
@@ -84,7 +84,7 @@ else
 {
     console.log("Given input is not a palindrone");
 }
-
+----------------------------------------------------------------------------------
 //Capitalize the first letter of every word in a sentence.
 
 function Capitalize(string)
@@ -101,7 +101,7 @@ function Capitalize(string)
 }
 let string ="my name is bharath reddy";
 console.log(Capitalize(string));
-
+------------------------------------------------------------------------------
 //Find the longest word in a sentence.
 
 function findLongest(string)
@@ -119,7 +119,7 @@ function findLongest(string)
 }
 let string ="my name is bharath reddy";
 console.log(`Longest word in the given string is ${findLongest(string)} `);
-
+-------------------------------------------------------------------------------
 //Numbers & Math
 
 //Check whether a number is prime.
@@ -144,7 +144,7 @@ function isPrime(n) {
 console.log(isPrime(11)); // true
 console.log(isPrime(15)); // false
 console.log(isPrime(2));  // true
-    
+ ------------------------------------------------------------------------------------------   
 //Find factorial of a number using loops.
 
 function factorial(number)
@@ -157,7 +157,7 @@ function factorial(number)
     return fact;
 }
 console.log(`factorial of given number is ${factorial(5)}`);
-
+----------------------------------------------------------------------------------
 //Find Fibonacci series up to n numbers.
 
 function getFibonacci(n) {
@@ -178,7 +178,7 @@ function getFibonacci(n) {
 console.log(getFibonacci(10));
 
 
-
+--------------------------------------------------------------------------
 //Check whether a number is Armstrong number.
 function Armstrong(num)
 {
@@ -199,7 +199,7 @@ function Armstrong(num)
 }
 console.log(Armstrong(153));
 
-
+---------------------------------------------------------------------------------------
 //arrays
 //Find the largest and smallest number in an array.
 
@@ -208,7 +208,7 @@ let arr=[1,25,63,78,95,1,5,24,1,87,2];
 console.log("Minimum nuber in the given Array",Math.min(...arr));
 console.log("Maximum nuber in the given Array: ",Math.max(...arr));
 
-
+------------------------------------------------------------------------------------
 //Remove duplicate elements from an array.
 
 function removeDuplicates(arr) {
@@ -226,7 +226,7 @@ function removeDuplicates(arr) {
 
 console.log(removeDuplicates([10, 10, 20, 30, 20]));
 
-
+--------------------------------------------------------------------------------------
 //Sort an array without using built-in sort().
 function sorting(arr)
 {
@@ -248,7 +248,7 @@ function sorting(arr)
 }
 let arr=[10,50,80,72,45,98];
 console.log(`sorted array is: ${sorting(arr)}`);
-
+-----------------------------------------------------------------------------------
 //Merge two arrays and remove duplicates.
 
 let arr=[10,15,20,30,40];
@@ -265,7 +265,7 @@ for(let i=0;i<arr3.length;i++)
 }
 console.log(arr1);
 
-
+-----------------------------------------------------------------------------------------
 //OBJECTS
 
 //Create an object for a student and display all properties dynamically.
@@ -278,8 +278,8 @@ let student={
 };
 console.log(student);
 
-*/
 
+------------------------------------------------------------------------------------
 //Count number of keys in an object.
 
 let student={
@@ -288,7 +288,167 @@ let student={
     city:"warangal",
     id:15
 };
-let count=0;
+let count=Object.keys(student).length;
 
-console.log(student.length);
+console.log(count);
+----------------------------------------------------------------------------------------
+// Merge two objects into one
+
+let student1={
+    name:"Bharath",
+    gender:"Male",
+    city:"warangal",
+    id:15
+};
+let address1={
+    house_no: 2,
+    street:12,
+    mandal:"hanamkonda",
+    state:"Telangana",
+}
+let a1={...student1,...address1};
+console.log(a1);
+--------------------------------------------------------------------------------
+// Convert an object into an array of keys and values.
+
+let address1={
+    house_no: 2,
+    street:12,
+    mandal:"hanamkonda",
+    state:"Telangana",
+}
+let student=Object.entries(address1);
+console.log(student);
+
+------------------------------------------------------------------------------
+//Create a shopping cart object and calculate total bill amount. 
+let cart={
+    soaps:200,
+    detergent:500,
+    tooth_paste:150,
+    rice:800,
+    milk:50
+};
+let bill=Object.values(cart).reduce((acc,curr) => { return acc+curr });
+console.log(`total bill is ${bill}`);
+------------------------------------------------------------------------------
+//loops
+//Print star pyramid patterns. 
+
+let n=5;
+for(let i=0;i<=n;i++)
+{
+    console.log(" * ".repeat(i));
+}
+-------------------------------------------------------------------------------
+//Print multiplication tables from 1 to 10.
+
+let arr=[1,2,3,4,5,6,7,8,9,10];
+for(let i=1;i<=10;i++)
+{
+    
+    arr.forEach(x=>console.log(`Multiplication table of ${i} is : ${i} * ${x} = ${i*x}`));
+}
+--------------------------------------------------------------------------
+//Print all prime numbers between 1 and 100. 
+function isprime(num)
+{
+    
+    if(num<=1) return false;
+    if(num==2) return true;
+    if(num%2==0) return false;
+
+    for(let i=3;i<=Math.sqrt(num);i++)
+    {
+        if(num%i==0) return false;
+    }
+    return true;
+
+}
+console.log(`prime numbers from 1 to 100 are: `);
+let primes=[]
+for(let i=0;i<=100;i++)
+{
+    if(isprime(i))
+        primes.push(i);
+       
+}
+console.log(primes);
+---------------------------------------------------------------------------
+//functions
+//Create a function that returns the greatest of three numbers. 
+
+let a=25,b=30,c=5;
+function max(a,b,c)
+{
+    return (Math.max(a,b,c));
+}
+console.log(`Maximum of given 3 numbers is ${max(a,b,c)}`);
+---------------------------------------------------------------------------
+// Write a function that accepts an array and returns only even numbers.
+function even(arr)
+{
+    let a=arr.filter(x=>x%2==0);
+    return a;
+}
+let arr=[1,2,3,4,5,6,7,8,9,10,41,87,96,23];
+console.log(even(arr));
+---------------------------------------------------------------------------
+//Callback Functions & setTimeout 
+
+// Create a delayed greeting message using setTimeout. 
+setTimeout(()=>
+{
+    console.log("Good morning!");
+},5000);
+
+----------------------------------------------------------------------------
+//Build a countdown timer.
+
+function startCountdown(seconds) {
+    let counter = seconds;
+
+    const timer = setInterval(() => {
+        console.log(`Time remaining: ${counter}s`);
+        counter--;
+
+        if (counter < 0) {
+            clearInterval(timer); 
+            console.log("Time's up!");
+        }
+    }, 1000);
+}
+
+startCountdown(10);
+--------------------------------------------------------------------------------
+
+//Double all numbers in an array using map(). 
+
+let arr=[1,2,3,4,5,6,7,8,9,10];
+console.log(arr.map(x=>x*2));
+----------------------------------------------------------------------------------------
+
+//Filter all students scoring above 80 marks
+let marks=[50,80,90,54,78,86,95,65,99];
+console.log(marks.filter(x=>x>80));
+
+-------------------------------------------------------------------------------------
+
+//Print all array values using forEach(). 
+let marks=[50,80,90,54,78,86,95,65,99];
+marks.forEach(x=>console.log(x));
+--------------------------------------------------------------------------------------------
+
+// Convert array of names into uppercase.
+let arr=["Ramu","Rahul","shiva","charan"];
+console.log(arr.map(x=>x.toUpperCase()));
+-----------------------------------------------------------------------------------------
+
+//Extract only even numbers using filter(). 
+let marks=[50,80,90,54,78,86,95,65,99];
+let arr=marks.filter(x=>(x%2==0));
+console.log(arr);
+--------------------------------------------------------------------------------------------
+*/
+
 
