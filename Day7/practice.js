@@ -449,6 +449,83 @@ let marks=[50,80,90,54,78,86,95,65,99];
 let arr=marks.filter(x=>(x%2==0));
 console.log(arr);
 --------------------------------------------------------------------------------------------
+
+// Scope and Hoisting
+// Predict output of variable hoisting examples.
+
+console.log(greet);
+var greet = "Hello, world!";
+console.log(greet);
+console.log(count);
+let count = 10;
+---------------------------------------------------------------------------------------------------
+
+//Create examples showing block scope using let.
+for (let i = 0; i < 3; i++) {
+
+  console.log("Iteration:", i);
+}
+
+// console.log(i);
+-----------------------------------------------------------------------------------------------------
+
+//Write a program demonstrating closure behavior.
+function arthimetic(a,b)
+{
+    
+    this.a=a;
+    this.b=b;
+
+
+    this.sum=function()
+    {
+        return a+b;
+    }
+    this.diff=function()
+    {
+        return a-b;
+    }
+}
+const obj=new arthimetic(5,10);
+console.log(obj.sum());
+
+------------------------------------------------------------------------------------
+
+// Closures
+
+let sum = 0; // 2
+function f() {
+    function increment() {
+        sum++;
+        
+        function inner2() {
+            sum++;
+            console.log(sum);
+        }
+        return inner2();
+    }
+    return increment();
+}
+f();
+console.log(sum);
+---------------------------------------------------------------------------------------------------------------------------------
+
+//calculator with call backs
+
+const calc = {
+    sum: (...op) => op.reduce((acc, curr) => acc + curr, 0),
+    sub: (...op) => op.reduce((acc, curr) => acc - curr, 0),
+    mul: (...op) => op.reduce((acc, curr) => acc * curr, 1),
+    div: (...op) => op.reduce((acc, curr) => acc / curr, 1),
+};
+ 
+ 
+function calculator(operation, ...operands) {
+    return operation(...operands);
+}
+ 
+console.log(calculator(calc.sum, 1, 2, 3))
+
 */
 
 
