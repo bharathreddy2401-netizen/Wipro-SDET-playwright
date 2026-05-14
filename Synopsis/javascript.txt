@@ -291,5 +291,193 @@ Takes one or more functions as arguments (callbacks).
 
 Returns a function as its result.
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+Day7:
+---------
+Destructuring:
+-----------------
+Destructuring is a shorthand way to "unpack" values from arrays or properties from objects into distinct variables.
+const user = { name: 'Alice', age: 25, city: 'London' };
+
+// Unpacking properties
+const { name, age } = user;
+
+console.log(name); // 'Alice'
+
+Array Destructuring
+Variables are assigned based on their index (position):
+
+const colors = ['red', 'green', 'blue'];
+
+const [first, second] = colors;
+
+console.log(first); // 'red'
+
+SPREAD OPERATOR:
+-----------------
+The Spread operator "expands" an iterable (like an array or object) into its individual elements. Use it when you want to copy or merge data.
+const parts = ['shoulders', 'knees'];
+const body = ['head', ...parts, 'and toes']; 
+
+// Result: ['head', 'shoulders', 'knees', 'and toes']
+
+Rest Parameter (...):
+---------------------
+The Rest syntax looks exactly like spread but does the opposite. It "collects" multiple elements and condenses them into a single array. It is typically used in function arguments or destructuring.
+function sum(...numbers) {
+  // 'numbers' is now an array: [1, 2, 3]
+  return numbers.reduce((acc, curr) => acc + curr);
+}
+
+sum(1, 2, 3);
+-----------------------------------------------------------------------------------------------------------------------
+
+Day9:
+-------
+TYPESCRIPT:
+--------------
+interface:
+---------
+
+interface User {
+  name: string;
+  age: number;
+  isAdmin?: boolean; // Optional property
+  sayHello(): void;  // Method definition
+}
+
+const person: User = {
+  name: "Leo",
+  age: 30,
+  sayHello: () => console.log("Hi!")
+};
+
+GENERICS:
+---------
+Generics are like "blueprints for blueprints." They allow you to write code (functions, classes, or interfaces) that can work with any data type while still maintaining strict type safety.
+
+Think of a Generic as a variable for a type. Instead of locking a function into just integers or strings, you use a placeholder.
+Interface: Defines the "shape" (what properties exist).
+
+Generics: Defines the "flexibility" (what data types those properties use).
+
+------------------
+enum:
+-------
+An Enum (short for Enumeration) is a special "class" that represents a group of constants—unchangeable variables that don't change.
+While JavaScript doesn't have a native enum keyword (we usually use objects for this), it is a core feature of TypeScript.
+
+enum Direction {
+  Up,    // 0
+  Down,  // 1
+  Left,  // 2
+  Right  // 3
+}
+
+let move: Direction = Direction.Up;
+-----------------------------------------------------------------------------------------------------
+Tuple:
+------
+A Tuple is essentially an array with a fixed number of elements where each element has a known type.
+
+While a regular array is usually a collection of the same type (like a list of strings), a tuple allows you to store a specific sequence of different types.
+// Defining a Tuple: [string, number]
+let user: [string, number];
+
+user = ["Alice", 25]; // Success
+// user = [25, "Alice"]; // Error: Type 'number' is not assignable to type 'string'
+---------------------------------------------------------------------------------------------------
+
+partial:
+----------
+Makes all properties in an object optional.
+omit:
+---------
+Omit<T, Keys>: Creates a new type by removing specific keys.
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+type UpdateUser = Partial<User>; // { id?, name?, email? }
+type AnonymousUser = Omit<User, "id" | "email">; // { name }
+
+Readonly:
+---------
+Makes all properties immutable (ready-only). You cannot reassign them.
+deep partial:
+-----------------
+This isn't built into TypeScript by default (TypeScript's Partial is shallow). A "Deep Partial" recursively makes every nested property optional.
+
+Any type:
+----------
+Turns off type checking completely. It’s dangerous because it allows you to do anything (like calling a function that doesn't exist), leading to runtime crashes.
+
+unknown type:
+--------------
+The safer sibling of any. It says "we don't know what this is yet." You must perform a type check (Type Guarding) before you can use it.
+
+Type gaurding:
+--------------
+Type guarding is the process of narrowing down a type within a conditional block. It’s how you handle unknown or Union types (like string | number).
+
+function process(input: string | number) {
+  if (typeof input === "string") {
+    // Inside this block, TypeScript knows 'input' is a string
+    console.log(input.toUpperCase());
+  } else {
+    console.log(input.toFixed(2));
+  }
+}
+
+typeof: Used in a type context, it extracts the type of a variable.
+
+keyof: Takes an object type and yields a "union" of its keys.
+
+------------------------------------------------------------------------------------------------------------
+Day12:
+----------
+
+Playwright:
+-----------
+npm init playwright@latest
+npx playwright test--to running
 
 
+Playwright is an end-to-end automation testing framework used for testing web applications. It supports multiple browsers like Chromium, Firefox, and WebKit using a single API. 
+It is mainly used for UI testing, functional testing, and cross-browser testing. Playwright provides fast execution, auto-waiting, screenshots, video recording, tracing, and parallel execution features.
+It supports JavaScript, TypeScript, Python, Java, and C#.
+
+Two Principles in Testing: Expected and Actual : 
+
+Expected Result : Expected result means the output that should happen according to requirements or business logic.
+Actual Result : Actual result means the real output produced by the system during execution.
+
+If both are same      → Test Pass
+If both are different → Test Fail
+
+Boundary Value Analysis (BVA) : Boundary Value Analysis is a black-box testing technique used to test values at the boundary limits because most errors occur at boundary values.
+Example : If age field accepts values from 18 to 60
+
+Test cases should be:
+
+17 (just below minimum)
+18 (minimum boundary)
+19 (just above minimum)
+59 (just below maximum)
+60 (maximum boundary)
+61 (just above maximum)
+Parallelism : Parallelism means executing multiple test cases at the same time instead of one after another.
+
+
+page.goto(): Navigates to the URL. Playwright waits for the "load" state by default.
+
+click(): Performs a human-like click. It automatically scrolls the element into view and waits for it to be visible and enabled before clicking.
+
+getByRole('link', { name: /Text/ }): This is high-quality automation. It looks for an <a> tag (link) that matches specific text.
+
+Regex Matching: Using /Request/ instead of "Request" allows for partial matches or case-insensitive searches.
+
+.nth(1): When multiple elements match (e.g., a "Request" button in the header and another in the footer), .nth() allows you to pick a specific one based on index (0-based).
