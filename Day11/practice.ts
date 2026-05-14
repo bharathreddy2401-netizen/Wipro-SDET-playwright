@@ -136,6 +136,20 @@ Scenario: You are working with a library that returns data wrapped in a Promise,
 Task: Create a utility type UnwrapPromise<T>. It should check if T is a Promise. If it is, use the infer keyword to return the type the promise resolves to; otherwise, return T itself.
 */
 
+/*
+type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
+type UserType = UnwrapPromise<Promise<string>>;
+type AgeType = UnwrapPromise<Promise<number>>;
+type BooleanType = UnwrapPromise<boolean>;
+
+const user: UserType = "Bharath";
+const age: AgeType = 24;
+const isActive: BooleanType = true;
+
+console.log(user);
+console.log(age);
+console.log(isActive);
+*/
 
 
 
@@ -164,24 +178,39 @@ type NonFormEvents=Exclude<AllEvents,'submit'|'reset'>;
 Scenario: You want to wrap any asynchronous function with a standard error logger.
 Task: Write a generic function safeExecute<T> that takes an async function as an argument. It should return a new function that, when called, executes the original function inside a try/catch block and returns null if it fails.
 */
-/*
-async function safeExecute<T>(demo: any):Promise
-{
-    try{
-
+function safeExecute<Args extends any[], T>(asyncFnc: (...args: Args) => Promise<T>) {
+    return async (...args: Args): Promise<T | null> => {
+        try {
+            return await asyncFnc(...args);
+        } catch (err) {
+            console.error(err);
+            return null;
+        }
     }
 }
 
+const info = async (id: number): Promise<string> => {
+    if(id === -1) throw new Error("Invalid ID");
+    return `Data for ID: ${id}`
+}
 
-*/
 
+async function dryRun() {
+    const getData = safeExecute(info);
+    const res = await getData(10);
+    const res1 = await getData(0);
+    const res2 = await getData(-1);
+    console.log(res, res1, res2);
+}
+
+dryRun();
 
 //----------------------------------------------------------------------------------------------------------------------
 //9th 
 /*Index Signatures for Dynamic Metadata
 Scenario: You are receiving a "Metadata" object from a server where the keys are dynamic strings, but the values must be either a string, number, or boolean.
 Task: Create an interface UserMetadata that has a required createdAt: Date but allows any other dynamic string keys as long as their values match the union type mentioned.
-*/
+
 
 type value= string |number|boolean|Date;
 
@@ -197,7 +226,7 @@ const validUser: UserMetadata = {
 };
 
 console.log(validUser);
-
+*/
 //10 th
 
 
@@ -206,16 +235,38 @@ Scenario: You have a data model and need to generate a type for an API response 
 Task:
 Define an interface Car { make: string; model: string; }.
 Create a mapped type ApiResponse<T> that iterates through keys of T and renames them to be uppercase and prefixed with DATA_ (e.g., make becomes DATA_MAKE).
-*//*
-interface car{
-    make:string;
-    model:string
+*/
+
+interface Car {
+  make: string;
+  model: string;
+  year: number;
 }
 
-let newCar :car={
-    make:"BMW",
-    model:"Model y"
+
+type ApiResponse<T> = {
+  [K in keyof T as `DATA_${Uppercase<string & K>}`]: T[K];
 };
 
+const carData: ApiResponse<Car> = {
+  DATA_MAKE: "Tesla",
+  DATA_MODEL: "Model 3",
+  DATA_YEAR: 2024,
+};
 
-*/
+function printCarResponse(response: ApiResponse<Car>) {
+  console.log(`Car: ${response.DATA_MAKE} ${response.DATA_MODEL}`);
+}
+
+printCarResponse(carData);
+
+
+interface User {
+  id: number;
+  username: string;
+}
+
+const userData: ApiResponse<User> = {
+  DATA_ID: 1,
+  DATA_USERNAME: "jdoe_dev"
+};
