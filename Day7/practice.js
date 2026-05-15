@@ -509,7 +509,7 @@ function f() {
 f();
 console.log(sum);
 ---------------------------------------------------------------------------------------------------------------------------------
-
+*/
 //calculator with call backs
 
 const calc = {
@@ -526,6 +526,6 @@ function calculator(operation, ...operands) {
  
 console.log(calculator(calc.sum, 1, 2, 3))
 
-*/
+
 
 
