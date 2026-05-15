@@ -481,3 +481,34 @@ getByRole('link', { name: /Text/ }): This is high-quality automation. It looks f
 Regex Matching: Using /Request/ instead of "Request" allows for partial matches or case-insensitive searches.
 
 .nth(1): When multiple elements match (e.g., a "Request" button in the header and another in the footer), .nth() allows you to pick a specific one based on index (0-based).
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Day -13:
+-----------
+important commands:
+
+npm i install and 
+npm init playwright@latest
+this creates new files 
+package-lock json,package.json and package config.json;
+
+playwright test files must be saved with .spec.js
+
+Today inside the web app folder we used 
+npm i install
+npm install body-parser
+npm install dotenv
+npm install express
+npm install path
+
+and inside the env file write PORT=3000 --> this sets the port =3000 and we dont need to write 3000 always instead use PORT
+
+after creating the login form we created an array of test cases to be checked and with all those loginid and passwords are checked automatically using loop 
+and after getting desired output is same as actual output the all test cases are passed.
+
+
+
+
+
+
