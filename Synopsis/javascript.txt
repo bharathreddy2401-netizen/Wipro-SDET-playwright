@@ -507,6 +507,65 @@ and inside the env file write PORT=3000 --> this sets the port =3000 and we dont
 after creating the login form we created an array of test cases to be checked and with all those loginid and passwords are checked automatically using loop 
 and after getting desired output is same as actual output the all test cases are passed.
 
+---------------------------------------------------------------------------------------------------------------------
+
+Day15:
+------
+code gen in playwright:
+this automatically writes code for ourself used to write code for locators, makes our task easy.
+
+npx playwright codegen "link"
+
+When you run the command, two windows will pop up:
+
+The Browser Window: Where you interact with the website (click, type, scroll).
+
+The Playwright Inspector Window: Where you see the code being generated live.
+
+
+Annotations:
+-------------
+skip:
+-----
+It is used to skip that particular test.
+remaining tests will run as it is 
+Triggers Playwright to completely skip the test. The test will not be executed at all, and it will be marked as "skipped" in the report.
+test.skip().
+
+fixme:
+------
+Marks a test as broken or failing. Similar to skip, Playwright will not run this test.
+
+Best used for: Tests that you know are currently broken due to a bug, and you intend to fix them later. It acts as a code-level TODO.
+
+test.fixme();
+
+fail:
+------
+Declares that the test is expected to fail. Playwright will run the test, but the outcome expectations are inverted:
+
+If the test fails, Playwright considers it a success (passes).
+
+If the test passes, Playwright considers it a failure (because you expected it to fail).
+
+Best used for: Asserting that a known bug is still present, or verifying a negative edge-case behavior.
+
+test.fail();
+
+slow:
+------
+Marks the test as slow and triples the default timeout for this specific test. If your default timeout is 30 seconds, test.slow() bumps it to 90 seconds.
+
+Best used for: Heavy integration workflows, file uploads, or multi-page setups that naturally take longer to run.
+test.slow();
+
+step:
+------
+alter the test outcome or timeout, test.step() is an organizational tool. It breaks down a single long test into clear, named semantic blocks. These steps show up beautifully in the Playwright HTML report.
+
+Best used for: Grouping actions in long End-to-End (E2E) flows to make debugging easier.
+
+test.step();
 
 
 
